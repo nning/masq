@@ -40,6 +40,8 @@ module Masq
       attrs.delete(:email) if email_as_login?
       attrs.delete(:login)
 
+      attrs[:ssl_certificate].gsub!(/\r\n|\n/, "\n").chomp! rescue nil
+
       if current_account.update_attributes(attrs)
         redirect_to edit_account_path(:account => current_account), :notice => t(:profile_updated)
       else

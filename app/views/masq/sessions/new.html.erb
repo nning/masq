@@ -25,3 +25,13 @@
     <span class="note"><%= link_to t(:i_forgot_my_password), forgot_password_path %></span>
   </div>
 <% end %>
+
+<% if Masq::Engine.config.masq['can_use_ssl_login'] %>
+  <h2><%=t :ssl_login_title %></h2>
+
+  <%= form_tag session_path do %>
+    <div>
+      <%= submit_tag t(:ssl_login_submit) %>
+    </div>
+  <% end %>
+<% end %>

@@ -8,12 +8,18 @@ module Masq
     end
 
     def create
-      self.current_account = Account.authenticate(params[:login], params[:password])
+      certificate = request.env['SSL_CLIENT_CERT']
+        .gsub(/\r\n|\n/, "\n").chomp rescue nil
+
+      a   = Account.authenticate_by_ssl_certificate(certificate) if certificate
+      a ||= Account.authenticate(params[:login], params[:password])
+
+      self.current_account = a
+
       if logged_in?
         flash[:notice] = t(:you_are_logged_in)
         redirect_after_login
       else
-        a = Account.find_by_login(params[:login])
         if a.nil?
           redirect_to login_path, :alert => t(:login_incorrect)
         elsif a.active? && a.enabled?
@@ -49,7 +55,7 @@ module Masq
         session[:return_to] = nil
         redirect_to return_to
       else
-        redirect_to identifier(current_account)
+        redirect_to identity_path(current_account)
       end
     end
   end

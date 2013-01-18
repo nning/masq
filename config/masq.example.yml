@@ -6,6 +6,7 @@ default: &default
   can_change_password: true
   can_disable_account: true
   can_use_yubikey: true
+  can_use_ssl_login: false
   create_auth_ondemand:
     enabled: false
     default_mail_domain: example.com

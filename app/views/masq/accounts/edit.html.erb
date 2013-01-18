@@ -83,6 +83,18 @@
   <% end %>
 <% end %>
 
+<% if Masq::Engine.config.masq['can_use_ssl_login'] %>
+  <h2><%=t :ssl_certificate %></h2>
+  <%= form_for :account, :url => account_path, :html => { :method => :put } do |f| %>
+    <div class="row">
+      <%= f.text_area :ssl_certificate, :cols => 64, :value => current_account.ssl_certificate %>
+    </div>
+    <div>
+      <%= submit_tag t(:submit_update) %>
+    </div>
+  <% end %>
+<% end %>
+
 <% if Masq::Engine.config.masq['can_disable_account'] %>
   <h2><%=t :disable_my_account %></h2>
 

@@ -14,11 +14,11 @@
 ActiveRecord::Schema.define(:version => 20120312120000) do
 
   create_table "masq_accounts", :force => true do |t|
-    t.boolean  "enabled",                                       :default => true
-    t.string   "login",                                                            :null => false
-    t.string   "email",                                                            :null => false
-    t.string   "crypted_password",                :limit => 40,                    :null => false
-    t.string   "salt",                            :limit => 40,                    :null => false
+    t.boolean  "enabled",                                         :default => true
+    t.string   "login",                                                              :null => false
+    t.string   "email",                                                              :null => false
+    t.string   "crypted_password",                :limit => 40,                      :null => false
+    t.string   "salt",                            :limit => 40,                      :null => false
     t.string   "remember_token"
     t.string   "password_reset_code",             :limit => 40
     t.string   "activation_code",                 :limit => 40
@@ -26,15 +26,17 @@ ActiveRecord::Schema.define(:version => 20120312120000) do
     t.integer  "public_persona_id"
     t.datetime "last_authenticated_at"
     t.boolean  "last_authenticated_with_yubikey"
-    t.boolean  "yubikey_mandatory",                             :default => false, :null => false
+    t.boolean  "yubikey_mandatory",                               :default => false, :null => false
     t.datetime "remember_token_expires_at"
     t.datetime "activated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "ssl_certificate",                 :limit => 4096
   end
 
   add_index "masq_accounts", ["email"], :name => "index_masq_accounts_on_email", :unique => true
   add_index "masq_accounts", ["login"], :name => "index_masq_accounts_on_login", :unique => true
+  add_index "masq_accounts", ["ssl_certificate"], :name => "index_masq_accounts_on_ssl_certificate", :unique => true
 
   create_table "masq_open_id_associations", :force => true do |t|
     t.binary  "server_url"
@@ -124,11 +126,5 @@ ActiveRecord::Schema.define(:version => 20120312120000) do
   end
 
   add_index "masq_sites", ["account_id", "url"], :name => "index_masq_sites_on_account_id_and_url", :unique => true
-
-  create_table "masq_timezones", :force => true do |t|
-    t.string "name", :limit => 60, :null => false
-  end
-
-  add_index "masq_timezones", ["name"], :name => "index_masq_timezones_on_name", :unique => true
 
 end

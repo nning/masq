@@ -30,8 +30,13 @@ class MasqSchema < ActiveRecord::Migration
         t.datetime :updated_at
       end
 
+      change_table :masq_accounts do |t|
+        t.string   :ssl_certificate, :limit => 4096
+      end
+
       add_index :masq_accounts, [:email], :unique => true
       add_index :masq_accounts, [:login], :unique => true
+      add_index :masq_accounts, [:ssl_certificate], :unique => true
     end
 
     # OpenID Associations

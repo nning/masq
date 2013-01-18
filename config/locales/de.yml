@@ -38,6 +38,7 @@ de:
   your_yubikey_is_mandatory_for_login: Ihr Yubikey ist beim Login zur Zeit erforderlich.
   make_my_yubikey_mandatory: Meinen Yubikey bei jedem Einloggen erfordern
   associate_account_with_yubikey: Meinen Account mit diesem Yubikey verbinden
+  ssl_certificate: SSL Zertifikat
   disable_my_account: Meinen Account deaktivieren
   wont_be_possible_to_reclaim_identifier: Bitte beachten Sie, dass Sie Ihre aktuelle OpenID-Kennung nicht erneut verwenden können
   confirm_by_entering_password: Bestätigen Sie bitte durch Eingabe Ihres Passworts
@@ -208,6 +209,8 @@ de:
   remember_me: Merken
   login_submit: Einloggen
   i_forgot_my_password: Ich habe mein Passwort vergessen
+  ssl_login_title: Mit SSL Zertifikat einloggen
+  ssl_login_submit: Ja!
 
   # server controller
   this_is_openid_not_a_human_ressource: Dies ist ein OpenID-Server-Endpunkt und keine von Menschen lesbare Ressource.

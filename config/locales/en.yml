@@ -38,6 +38,7 @@ en:
   make_my_yubikey_mandatory: Make my Yubikey mandatory for login
   your_yubikey_is_mandatory_for_login: Your Yubikey is currently mandatory for login.
   make_my_yubikey_optional: Make my Yubikey optional for login
+  ssl_certificate: SSL Certificate
   disable_my_account: Disable my account
   wont_be_possible_to_reclaim_identifier: Please consider that it won't be possible to reclaim your current OpenID identifier
   confirm_by_entering_password: Confirm this step by entering your password
@@ -208,6 +209,8 @@ en:
   remember_me: Remember me
   login_submit: login
   i_forgot_my_password: I forgot my password
+  ssl_login_title: Login with SSL certificate
+  ssl_login_submit: Do it!
 
   # server controller
   this_is_openid_not_a_human_ressource: This is an OpenID server endpoint, not a human readable resource.

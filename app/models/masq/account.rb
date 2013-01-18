@@ -23,7 +23,7 @@ module Masq
     before_save   :encrypt_password
     after_save    :deliver_forgot_password
 
-    attr_accessible :login, :email, :password, :password_confirmation, :public_persona_id, :yubikey_mandatory
+    attr_accessible :login, :email, :password, :password_confirmation, :public_persona_id, :yubikey_mandatory, :ssl_certificate
     attr_accessor :password
 
     class ActivationCodeNotFound < StandardError; end
@@ -74,10 +74,17 @@ module Masq
       !yubico_identity.nil?
     end
 
+    # Authenticates a user by SSL certificate.
+    # Returns the user or nil.
+    def self.authenticate_by_ssl_certificate(certificate)
+      Account.find_by_ssl_certificate(certificate)
+    end
+
     # Authenticates a user by their login name and password.
     # Returns the user or nil.
     def self.authenticate(login, password, basic_auth_used=false)
       a = Account.find_by_login(login)
+
       if a.nil? and Masq::Engine.config.masq['create_auth_ondemand']['enabled']
         # Need to set some password - but is never used
         if Masq::Engine.config.masq['create_auth_ondemand']['random_password']
