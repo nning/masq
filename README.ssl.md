@@ -3,6 +3,12 @@
 For quick testing of the SSL certificate login with webrick, add the following
 lines to `script/rails` in a project, which includes the masq engine.
 
+    require 'rubygems'
+    require 'rails/commands/server'
+    require 'rack'
+    require 'webrick'
+    require 'webrick/https'
+
     module Rails
       class Server < ::Rack::Server
         def default_options
